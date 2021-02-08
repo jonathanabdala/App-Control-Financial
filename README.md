@@ -1,6 +1,6 @@
 # App Controle Financeiro 
 
-Projeto prático da Maratona Dsicover - Rocketseate - Desenvolvimento em andamento.
+Projeto prático da Maratona Discover  - Desenvolvimento em andamento.
 
 # Tecnologias utilizadas no projeto
 
