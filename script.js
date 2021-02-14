@@ -13,28 +13,28 @@ const Modal = {
        .classList.remove('active')
     }
 }
-// Primeiro Objeto
+// Criação do Array com seus Objetos
 const transactions = [
  {
-    id: 1,
+   
     description:'Luz',
     amount:-50000,
     date:'23/01/2021'
  },
  {
-    id: 2,
+   
     description:'Website',
     amount:500000,
     date:'23/01/2021'
  },
  {
-    id: 3,
+    
     description:'Internet',
     amount:-20000,
     date:'23/01/2021'
  },
  {
-    id: 4,
+    
     description:'APP',
     amount:20000,
     date:'23/01/2021'
@@ -42,23 +42,89 @@ const transactions = [
 ]
 
 
-//Etapa
+//Etapa responsavel para efetuar os calculos matemáticos:
 /*Preciso somar as entradas. Depois eu preciso somar as saídas e remover as entradas os valores das saídas */
+const Transaction = {
+    all : [
+        {
+          
+           description:'Luz',
+           amount:-50000,
+           date:'23/01/2021'
+        },
+        {
+          
+           description:'Website',
+           amount:500000,
+           date:'23/01/2021'
+        },
+        {
+           
+           description:'Internet',
+           amount:-20000,
+           date:'23/01/2021'
+        },
+        {
+           
+           description:'APP',
+           amount:20000,
+           date:'23/01/2021'
+        },
+       ]
+    // Refatoração
+    // Crinado um atalho utilizando 'all' para transactions dentro de Transaction
+    all: transactions,
+       // Funcionalidade de Adcionar transações com o 'push' a uma lista 
+    add(transaction){
+          Transaction.all.push(transaction)
 
-const transaction = {
+          App.reaload() 
+
+        },
+        // Funcionalidade de Remover trasações
+    remove(index){
+        // Metodo 'splice' tuilizado para esperar qual é a posição do Array
+        // pegar cada index, é irformar a quantidade de elemento a ser deletado, neste caso somente um (1) elemento
+        Transaction.all.splice(index, 1 )
+
+        App.reaload()
+    },
+
     incomes(){
-        return "Cheguei"
+        let income = 0;
+        // Pegar todas as transações;
+        // Para cada transação;
+        Transaction.all.forEach(transaction => {
+        // Verificar se a transação é maior que zero;
+        if(transaction.amount > 0){
+        // Se for maior que zero, somar a uma variavel e retornar a variavel
+        income += transaction.amount;
+        }
+        })
+        return income;
     },
+
     expanses(){
-        return "Aqui"
+        let expanses = 0;
+        // Pegar todas as transações;
+        // Para cada transação;
+        Transaction.all.forEach(transaction => {
+        // Verificar se a transação é menor que zero;
+        if(transaction.amount < 0){
+        // Se for maior que zero, somar a uma variavel e retornar a variavel
+        expanses += transaction.amount;
+        }
+        })
+        return expanses;
     },
+
     total(){
-        return "Discover"
-    }
+       
+        return Transaction.incomes() + Transaction.expanses();
+    },
 }
 
 // Substituir os Dados do HTML com os dados do JS
-
 const DOM = {
     transactionsContainer: document.querySelector('#data-table tbody'),
 
@@ -67,7 +133,7 @@ const DOM = {
             tr.innerHTML = DOM.innerHTMLTransaction(transaction)
             
             DOM.transactionsContainer.appendChild(tr)
-        },
+     },
     
     innerHTMLTransaction(transaction)  {
         // Parte lógica - usando ternário, verificando se um dado é verdadeiro ou falso
@@ -85,21 +151,41 @@ const DOM = {
                 `
 
                 return html
-    }
-
+    },
+    // Etapa responsavel pelo visual da DOM.
     updateBalance(){
     document
         .getElementById('incomeDisplay')
-        .innerHTML = "Somas das entradas"
+        .innerHTML = Utils.formatCurrency(Transaction.incomes())
     document
         .getElementById('expenseDisplay')
-        .innerHTML = "Somas das saídas"
+        .innerHTML = Utils.formatCurrency(Transaction.expanses())
     document
         .getElementById('totalDisplay')
-        .innerHTML = "total"    
+        .innerHTML = Utils.formatCurrency(Transaction.total())  
+    },
+    // Função responsavel por limpar a tbody 
+    clearTransactions(){
+        DOM.transactionsContainer.innerHTML = ""
+    },
+}
+
+// Criação dos formulários
+const Form = {
+    submit(event){
+        // Função para não realizar o comportamento padrão de enviar o formulário com as informações na URL
+        event.preventDefault()
+
+        // Verificar se todas as informações foram preenchidas
+        // Formatar os dados para salvar
+        // Salvar
+        // Apagar os dados do formulário
+        // Modal vai fechar
+        // Atualizar a aplicação
     }
 }
 
+// Etapa 'Util' responsavel pela formação do moeda 
 const Utils = {
     // Formatação da moeda 
     formatCurrency(value){
@@ -117,13 +203,41 @@ const Utils = {
         
     })
     return signal + value
-}
+},
 
 }
+// Refatoranção para realizar o fluxo da aplicação
+// Funciinalidade que vai realizar a releitura das coisas
+cont App = {
+    init(){
+
+    },
+    reload(){
+
+    },
+}
 
 
-transactions.forcEach(function(transaction){
+const App = {
+    init(){
+
+// Etapa das execuções da aplicação:
+Transaction.all.forcEach(transaction => {
     DOM.addTransaction(transaction)
+    // Adiciona as transações que já existem na tela
 })
 
+
 DOM.updateBalance()
+
+
+  },
+  reload(){
+    //   Ao entrar na DOM sera limpo
+    DOM.clearTransactions()  
+    // Retonara para as Transaction e Popular tudo novamente
+    App.init()
+  },
+}
+ App.init()
+

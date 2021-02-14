@@ -99,7 +99,8 @@
         <div class="modal">
             <div id="form">
                 <h2>Nova Transação</h2>
-                <form action="">
+                <!-- Refatoração do form utilizando onsubmit (liga para um evento que vai ocorrer) -->
+                <form action="" onsubmit="Form.submit(event)">
                     <div class="input-group">
                         <label class="sr-only" 
                            for="description">Descrição</label>
