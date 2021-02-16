@@ -246,7 +246,7 @@
         .input-group{
             margin-top: 0.8rem;
         }
-        .input-group small{
+        .input-group .help{
             opacity:0.4;
         }
         .input-group.actions{
@@ -279,4 +279,4 @@
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 2rem;
-            }
+            },
