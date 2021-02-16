@@ -1,7 +1,13 @@
 # App Controle Financeiro 
 
-Projeto prático da Maratona Discover  - Desenvolvimento em andamento.
+Projeto prático da Maratona Discover Rocketseat  - Desenvolvimento em andamento.
 
 # Tecnologias utilizadas no projeto
 
- HTML5-CSS3-JavaScript
+ #FRONTEND
+ 
+ ##HTML5
+ 
+ ##CSS3
+ 
+ ##JavaScript
