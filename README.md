@@ -4,10 +4,10 @@ Projeto prático da Maratona Discover Rocketseat  - Desenvolvimento em andamento
 
 # Tecnologias utilizadas no projeto
 
- #FRONTEND
+FRONTEND
  
- ##HTML5
+HTML5
  
- ##CSS3
+CSS3
  
- ##JavaScript
+JavaScript
